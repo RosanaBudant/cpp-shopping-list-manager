@@ -67,6 +67,103 @@ public:
 
         file.close();
     }
+
+    void removeItem() {
+        vector<string> currentItems;
+        ifstream file(fileName);
+        string line;
+
+        while (getline(file, line)) {
+            currentItems.push_back(line);
+        }
+
+        file.close();
+
+        if (currentItems.empty()) {
+            cout << "Shopping list is empty." << endl;
+            return;
+        }
+
+        cout << "\n--- Current Items ---\n";
+
+        for (size_t i = 0; i < currentItems.size(); i++) {
+            cout << i + 1 << " - " << currentItems[i] << endl;
+        }
+
+        int itemNumber;
+
+        cout << "Enter the item number to remove: ";
+        cin >> itemNumber;
+
+        if (itemNumber < 1 || itemNumber > currentItems.size()) {
+            cout << "Invalid item." << endl;
+            return;
+        }
+
+        currentItems.erase(currentItems.begin() + (itemNumber - 1));
+
+        ofstream outFile(fileName);
+
+        for (const string& item : currentItems) {
+            outFile << item << endl;
+        }
+
+        outFile.close();
+
+        cout << "Item removed successfully." << endl;
+    }
+
+    void editItem() {
+        vector<string> currentItems;
+        ifstream file(fileName);
+        string line;
+
+        while (getline(file, line)) {
+            currentItems.push_back(line);
+        }
+
+        file.close();
+
+        if (currentItems.empty()) {
+            cout << "Shopping list is empty." << endl;
+            return;
+        }
+
+        cout << "\n--- Current Items ---\n";
+
+        for (size_t i = 0; i < currentItems.size(); i++) {
+            cout << i + 1 << " - " << currentItems[i] << endl;
+        }
+
+        int itemNumber;
+
+        cout << "Enter the item number to edit: ";
+        cin >> itemNumber;
+
+        if (itemNumber < 1 || itemNumber > currentItems.size()) {
+            cout << "Invalid item." << endl;
+            return;
+        }
+
+        cin.ignore();
+
+        string newItem;
+
+        cout << "Enter the new item name: ";
+        getline(cin, newItem);
+
+        currentItems[itemNumber - 1] = newItem;
+
+        ofstream outFile(fileName);
+
+        for (const string& item : currentItems) {
+            outFile << item << endl;
+        }
+
+        outFile.close();
+
+        cout << "Item updated successfully." << endl;
+    }
 };
 
 int main() {
@@ -78,7 +175,9 @@ int main() {
         cout << "\n=== Shopping List Manager ===\n";
         cout << "1 - Add items\n";
         cout << "2 - List items\n";
-        cout << "3 - Exit\n";
+        cout << "3 - Remove item\n";
+        cout << "4 - Edit item\n";
+        cout << "5 - Exit\n";
         cout << "Choose an option: ";
         cin >> option;
 
@@ -92,14 +191,21 @@ int main() {
                 break;
 
             case 3:
+                shoppingList.removeItem();
+                break;
+
+            case 4:
+                shoppingList.editItem();
+                break;
+
+            case 5:
                 cout << "Closing program..." << endl;
                 break;
 
             default:
                 cout << "Invalid option." << endl;
         }
-
-    } while (option != 3);
+    } while (option != 5);
 
     return 0;
 }
