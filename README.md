@@ -1,30 +1,41 @@
 # Shopping List Manager (C++)
 
-A simple terminal-based shopping list manager developed in C++.
+A terminal-based shopping list manager developed in C++.
+
+This project allows users to add, list, edit, and remove shopping list items while storing data persistently in a TXT file.
+
+---
 
 ## Features
 
-- Add items to the shopping list
-- Save items into a TXT file
-- Display saved items
-- Terminal menu interface
-- File persistence using `fstream`
+- Add new items
+- List saved items
+- Edit existing items
+- Remove items
+- Persistent file storage
+- Interactive terminal menu
 
-## Technologies
+---
+
+## Technologies Used
 
 - C++
 - STL (`vector`, `string`)
 - File handling with `fstream`
-- Linux/Windows terminal
+- Object-oriented programming
+
+---
 
 ## Project Structure
 
 ```bash
 .
 ├── main.cpp
-├── shopping_list.txt
-└── README.md
-````
+├── README.md
+└── .gitignore
+```
+
+---
 
 ## How to Compile
 
@@ -42,20 +53,25 @@ g++ main.cpp -o shopping_list.exe
 shopping_list.exe
 ```
 
-## Learning Goals
+---
 
-This project was created to practice:
+## Learning Objectives
 
-* Object-oriented programming
-* File manipulation
-* STL containers
-* User input handling
-* Terminal applications
+This project was developed to practice:
+
+- File manipulation
+- CRUD operations
+- STL containers
+- User input handling
+- Terminal applications
+- Basic object-oriented programming
+
+---
 
 ## Future Improvements
 
-* Remove items
-* Edit items
-* Save data using JSON
-* Add categories
-* Improve input validation
+- Item categories
+- Search functionality
+- JSON storage
+- Improved terminal UI
+- Better input validation
